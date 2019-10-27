@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sarcasm</title>
+	<style type="text/css">
+		
+	</style>
+	<script type="text/javascript">
+		window.addEventListener("load", function () {
+
+
+			document.getElementById("input").addEventListener("change", function () {
+
+				let textMin = document.getElementById("input").value.toLowerCase();
+				let textMax = document.getElementById("input").value.toUpperCase();
+				
+				for (var i = textMin.length - 1; i >= 0; i--) {
+					if(textMin.charCodeAt(i)>=97 && textMin.charCodeAt(i)<=122){
+						
+						let rand = Math.random();
+						if (i%2==1) {
+							if(rand<0.9){
+								textMin = textMin.replaceAt(i,textMax[i]);
+							}
+						} else {
+							if(rand<0.1){
+								textMin = textMin.replaceAt(i,textMax[i]);
+							}
+						}
+
+					}
+				}
+
+				document.getElementById("output").value = textMin;
+			});
+		});
+		
+		String.prototype.replaceAt=function(index, replacement) {
+			return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+		}
+	</script>
+</head>
+<body>
+
+	<textarea id="input" rows="2" cols="40"></textarea>
+	<textarea id="output" rows="2" cols="40"></textarea>
+
+</body>
+</html>
